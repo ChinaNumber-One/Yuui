@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/reset.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<style>
+		html,
+		body {
+			cursor: pointer;
+			height: 100%;
+			background: none;
+		}
+
+		.pageBox {
+			height: 100%;
+			width: 100%;
+			overflow: auto;
+			border-radius: 27px;
+			background: #e7525c;
+			display: flex;
+			flex-direction: column;
+			align-content: center;
+			color: #fff;
+			/* padding: 30px 12px 10px; */
+		}
+
+		.title {
+			color: #fff;
+			font-size: 18px;
+			height: 66px;
+			width: 100%;
+			background: #e7525c url('./img/mobile-lh.png') no-repeat center 0px / 50% auto;
+			padding-top: 24px;
+			line-height: 42px;
+			text-align: center;
+			position: relative;
+		}
+
+		.time {
+			position: absolute;
+			top: 6px;
+			left: 24px;
+			font-size: 12px;
+			line-height: 12px;
+		}
+
+		.powerIcon {
+			position: absolute;
+			top: 2px;
+			right: 20px;
+			width: 22px;
+			height: 18px;
+			;
+		}
+
+		.wifiIcon {
+			position: absolute;
+			top: 4px;
+			right: 50px;
+			width: 14px;
+			height: 14px;
+			;
+		}
+
+		.logoIcon {
+			height: 200px;
+			width: 200px;
+			margin: 0 auto;
+		}
+
+		.welcomeText {
+			font-size: 28px;
+			text-align: center;
+			font-weight: 600;
+			margin: 16px 0;
+		}
+
+		.goDefault {
+			height: 40px;
+			width: 90px;
+			border-radius: 10px;
+			background: #52b4e7;
+			line-height: 40px;
+			text-align: center;
+			font-size: 22px;
+			margin: 30px auto 0;
+		}
+
+		.introduce {
+			padding: 8px 14px;
+			line-height: 22px;
+			font-size: 14px;
+			text-indent: 2em;
+		}
+
+		.cursor {
+			position: absolute;
+			background: rgba(255, 255, 255, 0.3);
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class='pageBox'>
+		<div class="title">
+			<div class="time"></div>
+			<img src="./img/wifi.png" alt="" class='wifiIcon'>
+			<img src="./img/power.png" alt="" class='powerIcon'>
+		</div>
+		<img src="./img/shuai.png" alt="" class='logoIcon'>
+		<div class='animated wobble welcomeText'>Welcome to Yuui !</div>
+		<div class='introduce animated fadeIn'>点击文档左侧菜单选项即可在此预览相应效果哟！^_^</div>
+		<div class='introduce animated fadeIn'>或者点击下面按钮进入选择列表</div>
+		<div class='goDefault'>Go</div>
+	</div>
+	<div class='cursor'></div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+	$(function () {
+		$('.time').html(getTime())
+		setInterval(() => {
+			$('.time').html(getTime())
+		}, 1000)
+		function getTime() {
+			let date = new Date()
+			let hour = '0' + date.getHours()
+			let minute = '0' + date.getMinutes()
+			let second = '0' + date.getSeconds()
+			return hour.substr(-2) + ':' + minute.substr(-2)
+		}
+		$('.goDefault').click(function(){
+			location.href = './mobile-actionSheet.html'
+		})
+	})
+
+
+</script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/yuui.css">
+  <style>
+    li {
+      line-height: 40px;
+      padding: 0 30px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>语文</li>
+    <li>数学</li>
+    <li>外语</li>
+    <li>物理</li>
+  </ul>
+  <div id="as"></div>
+  <div id="as1"></div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src='./js/yuui.js'></script>
+<script>
+  $(function(){
+    let op1 = {
+      domId:'as',
+      buttons:[
+        {
+          name:'5分',
+          value:5
+        },
+        {
+          name:'4分',
+          value:4
+        },
+        {
+          name:'3分',
+          value:3
+        },
+        {
+          name:'2分',
+          value:2
+        },
+        {
+          name:'1分',
+          value:1
+        }
+      ]
+    }
+    let op2 = {
+      domId:'as1',
+      buttons:[
+        {
+          name:'未选',
+          value:false
+        },
+        {
+          name:'已选',
+          value:true
+        }
+      ]
+    }
+    Yuui.createActionSheet(op1)
+    Yuui.createActionSheet(op2)
+    $('li').click(function(e){
+      if(e.currentTarget.innerHTML!=='物理'){
+        Yuui.actionSheetShow('as').getActionSheetData((value)=>{
+          console.log(e.currentTarget.innerHTML,value.value)
+        })
+      } else {
+        Yuui.actionSheetShow('as1').getActionSheetData()
+      }
+      
+      
+    })
+  })
+</script>

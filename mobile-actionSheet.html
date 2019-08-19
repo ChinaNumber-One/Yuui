@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/yuui.css">
+  <style>
+    html,
+    body {
+      cursor: pointer;
+      height: 100%;
+      background: none;
+      border-radius: 27px;
+      overflow: hidden;
+    }
+
+    .yu-actionSheetMask,
+    .yu-actionSheetList {
+      border-radius: 27px;
+    }
+
+    .pageBox {
+      height: 100%;
+      width: 100%;
+    }
+
+    .title {
+      color: #fff;
+      font-size: 18px;
+      height: 66px;
+      width: 100%;
+      background: #e7525c url('./img/mobile-lh.png') no-repeat center 0px / 50% auto;
+      padding-top: 24px;
+      line-height: 42px;
+      text-align: center;
+      position: relative;
+      border-top-left-radius: 27px;
+      border-top-right-radius: 27px;
+    }
+
+    .backIcon {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 6px;
+      top: 35px;
+    }
+
+    .flex-warp {
+      display: flex;
+    }
+
+    .flex-cont {
+      flex: 1;
+    }
+
+    .time {
+      position: absolute;
+      top: 6px;
+      left: 24px;
+      font-size: 12px;
+      line-height: 12px;
+    }
+
+    .powerIcon {
+      position: absolute;
+      top: 2px;
+      right: 20px;
+      width: 22px;
+      height: 18px;
+      ;
+    }
+
+    .wifiIcon {
+      position: absolute;
+      top: 4px;
+      right: 50px;
+      width: 14px;
+      height: 14px;
+      ;
+    }
+
+    .extendIcon {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      right: 6px;
+      top: 35px;
+    }
+
+    .watchList {
+      margin-top: 12px;
+      padding: 12px;
+    }
+
+    .watchItem {
+      padding: 8px 0;
+      line-height: 24px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+
+    }
+
+    .watchItem:hover {
+      color: #e7525c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='pageBox'>
+    <div class="title">
+      <div class="time"></div>
+      <img src="./img/wifi.png" alt="" class='wifiIcon'>
+      <img src="./img/power.png" alt="" class='powerIcon'>
+      <img src="./img/back.png" alt="" class='backIcon'>
+      <div class=''>ActionSheet-Demo</div>
+      <img src="./img/extend.png" alt="" class='extendIcon'>
+    </div>
+    <div class='watchList'>
+      <div class="watchItem" data-type="1">
+        基本使用
+        <div id="as1"></div>
+      </div>
+      <div class="watchItem" data-type="2">
+        显示取消菜单
+        <div id="as2"></div>
+      </div>
+      <div class="watchItem" data-type="3">
+        在上方显示
+        <div id="as3"></div>
+      </div>
+      <div class="watchItem" data-type="4">
+        在中间显示
+        <div id="as4"></div>
+      </div>
+      <div class="watchItem" data-type="5">
+        点击菜单不关闭
+        <div id="as5"></div>
+      </div>
+      <div class="watchItem" data-type="6">
+        点击遮罩层不关闭
+        <div id="as6"></div>
+      </div>
+      <div class="watchItem" data-type="7">
+        带副标题
+        <div id="as7"></div>
+      </div>
+      <div class="watchItem" data-type="8">
+        显示上一次创建的actionSheet
+      </div>
+      <div class="watchItem" data-type="9">
+        显示已创建指定Dom下的actionSheet(此处指定于基本使用)
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src='./js/yuui.js'></script>
+<script>
+  $(function () {
+    $('.time').html(getTime())
+    setInterval(() => {
+      $('.time').html(getTime())
+    }, 1000)
+    function getTime() {
+      let date = new Date()
+      let hour = '0' + date.getHours()
+      let minute = '0' + date.getMinutes()
+      let second = '0' + date.getSeconds()
+      return hour.substr(-2) + ':' + minute.substr(-2)
+    }
+    $('.backIcon').click(function () {
+      window.history.go(-1)
+    })
+    $('.watchItem').click(function (e) {
+      watchType(e.target.dataset.type, e.target.innerHTML)
+    })
+    function watchType(type, text) {
+      let options = {
+        title: text,
+        buttons: [{
+          name: 'buttons1'
+        }, {
+          name: 'buttons2'
+        }, {
+          name: 'buttons3'
+        }]
+      }
+      let baseoptions = {
+        title: text,
+      }
+      options.domId = 'as' + type
+      baseoptions.domId = 'as' + type
+      if (type == 1) {
+        Yuui.createActionSheet(baseoptions).actionSheetShow().getActionSheetData((res) => {
+          console.log(res)
+        })
+      }
+      if (type == 2) {
+        options.showCancel = true
+        Yuui.createActionSheet(options).actionSheetShow().getActionSheetData((res) => {
+          console.log(res)
+        })
+      }
+      if (type == 3) {
+        options.position = 'top'
+        Yuui.createActionSheet(options).actionSheetShow().getActionSheetData((res) => {
+          console.log(res)
+        })
+      }
+      if (type == 4) {
+        options.position = 'middle'
+        Yuui.createActionSheet(options).actionSheetShow().getActionSheetData((res) => {
+          console.log(res)
+        })
+      }
+      if (type == 5) {
+        options.closeOnclickMenu = false
+        Yuui.createActionSheet(options).actionSheetShow().getActionSheetData((res) => {
+          console.log(res)
+        })
+      }
+      if (type == 6) {
+        options.closeOnclickMask = false
+        Yuui.createActionSheet(options).actionSheetShow().getActionSheetData((res) => {
+          console.log(res)
+        })
+      }
+      if (type == 7) {
+        options.desc = '副标题，描述等文字'
+        let abc = Yuui.createActionSheet(options)
+        abc.actionSheetShow().getActionSheetData((res) => {
+          console.log(res)
+        })
+      }
+      if (type == 8) {
+        Yuui.actionSheetShow()
+      }
+      if (type == 9) {
+        Yuui.actionSheetShow('as1')
+      }
+    }
+  })
+</script>

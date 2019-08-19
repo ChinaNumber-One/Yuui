@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/yuui.css">
+  <style>
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: rgba(231, 82, 92, 0.8);
+    }
+
+    ::-webkit-scrollbar-track {
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.1);
+      /* display: none; */
+    }
+
+    .pageBox {
+      min-height: 100%;
+    }
+
+    .title {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 600;
+      padding: 6px 32px;
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      z-index: 2;
+      background: #e7525c;
+    }
+
+    .uiTitle {
+      font-size: 16px;
+    }
+
+    table,
+    table tr th,
+    table tr td {
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      line-height: 24px;
+      padding: 6px 0;
+      padding-left: 12px;
+    }
+
+    table tr td {
+      font-size: 14px;
+    }
+
+    table thead tr th {
+      padding: 14px 0;
+      padding-left: 12px;
+    }
+
+    table tr td:first-child {
+      color: #e7525c;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    table tr td:nth-of-type(2) span {
+      font-size: 12px;
+      background: rgba(0, 0, 0, .07);
+      color: #233ae9;
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+
+    table thead>tr {
+      background-color: #eee !important;
+    }
+
+    table tr:nth-child(2n) {
+      background-color: #fafafa;
+    }
+
+    table tbody tr:hover {
+      background: #f5f7fa;
+      /* text-align: center; */
+    }
+
+    table {
+      margin: 22px 0;
+      width: 100%;
+      min-height: 25px;
+      line-height: 25px;
+      border-collapse: collapse;
+      padding: 2px;
+      font-size: 16px;
+    }
+
+    .flex-wrap {
+      display: flex;
+    }
+
+    .flex-cont {
+      flex: 1;
+    }
+
+    .logoIcon {
+      width: 50px;
+      height: 50px;
+      display: block;
+      margin-right: 16px;
+    }
+
+    .pageContainer {
+      /* padding: 0 32px; */
+      height: calc(100vh - 63px)
+    }
+
+    .menuList {
+      width: 200px;
+      margin: 12px 0;
+      padding: 12px 0;
+      padding-left: 24px;
+      overflow: auto;
+      position: sticky;
+      left: 0;
+      top: 111px;
+      background: #f8f8f8;
+      color: #000;
+      flex-shrink: 0;
+      z-index: 1;
+      box-shadow: 2px 0px 8px 1px rgba(0, 0, 0, .3);
+    }
+
+    .mobileView {
+      width: 337px;
+      height: 600px;
+      margin: 30px 10px;
+      border-radius: 10px;
+      background-image: url('./img/mobile.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      padding: 18px 22px 17px;
+    }
+
+    .pageContent {
+      overflow: auto;
+    }
+
+    .anchor-point {
+      padding: 20px 20px 30px;
+    }
+
+    .bobileBox {
+      width: 100%;
+      height: 100%;
+      border-radius: 27px;
+    }
+
+    .menuType {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 36px;
+    }
+
+    .menuList ul {
+      margin-top: 12px;
+    }
+
+    .menuList li a {
+      display: block;
+      cursor: pointer;
+      text-indent: 28px;
+      color: #000;
+    }
+
+
+    .menuList li:hover a {
+      color: #e7525c;
+    }
+
+    .attributesBox .document_title,
+    .methodsBox .document_title {
+      font-size: 22px;
+      border-bottom: 1px solid #ddd;
+      line-height: 34px;
+      text-indent: 1em;
+      border-left: 4px solid #e7525c;
+    }
+    .apiItemTitle {
+      line-height: 60px;
+      font-size: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='pageBox'>
+    <h1 class='title'>
+      <a class='flex-wrap' style="align-items: center;color: #fff;" href="#" >
+        <img src="./img/shuai.png" alt="" class='logoIcon'>
+        <div>Yuui Document</div>
+      </a>
+    </h1>
+    <div class='flex-wrap pageContainer'>
+      <div class="menuList">
+        <p class='menuType'>弹框提示</p>
+        <ul>
+          <li class='menuItem' data-href="mobile-actionSheet">
+            <a href="#mobile-actionSheet">ActionSheet</a>
+          </li>
+        </ul>
+      </div>
+      <div class="pageContent flex-cont">
+        <div id="mobile-actionSheet" class="anchor-point">
+          <div class='apiItemTitle'>ActionSheet</div>
+          <div class="attributesBox">
+            <div class='document_title'>属性（attributes）</div>
+            <table>
+              <thead>
+                <tr>
+                  <th width="20%">名字</th>
+                  <th width="10%">类型</th>
+                  <th width="35%">默认值</th>
+                  <th width="35%">说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>title</td>
+                  <td><span>String</span></td>
+                  <td>空</td>
+                  <td>标题</td>
+                </tr>
+                <tr>
+                  <td>desc</td>
+                  <td><span>String</span></td>
+                  <td>空</td>
+                  <td>副标题、描述等</td>
+                </tr>
+                <tr>
+                  <td>position</td>
+                  <td><span>String</span></td>
+                  <td>bottom</td>
+                  <td>菜单显示的位置。可选值：'top','middle','bottom'</td>
+                </tr>
+                <tr>
+                  <td>buttons</td>
+                  <td><span>Array</span></td>
+                  <td>
+                    <p>[</p>
+                    <p style="text-indent: 1em;">{name: '1、createActionSheet(options)创建}',</p>
+                    <p style="text-indent: 1em;">{name: '2、actionSheetShow()显示}',</p>
+                    <p style="text-indent: 1em;">{name: '3、getActionSheetData(cb)获取值}',</p>
+                    <p style="text-indent: 1em;">{name: '4、actionSheetHide()关闭}'</p>
+                    <p>]</p>
+                  </td>
+                  <td>
+                    <p>菜单组列表</p>
+                    <p>[{</p>
+                    <p style="text-indent: 1em;">name: '显示菜单名称',</p>
+                    <p style="text-indent: 1em;">value: '值',</p>
+                    <p style="text-indent: 1em;">name: '图标url'</p>
+                    <p>}]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>iconPosition</td>
+                  <td><span>String</span></td>
+                  <td>left</td>
+                  <td>菜单中图标显示位置，可选值：'left'，'right'</td>
+                </tr>
+                <tr>
+                  <td>closeOnclickMask</td>
+                  <td><span>Boolean</span></td>
+                  <td>true</td>
+                  <td>点击遮罩时是否关闭菜单，适用于一些进入页面时需要强制选择的场景。</td>
+                </tr>
+                <tr>
+                  <td>closeOnclickMenu</td>
+                  <td><span>Boolean</span></td>
+                  <td>true</td>
+                  <td>点击菜单时是否自动关闭</td>
+                </tr>
+                <tr>
+                  <td>showCancel</td>
+                  <td><span>Boolean</span></td>
+                  <td>false</td>
+                  <td>是否显示“取消”菜单</td>
+                </tr>
+                <tr>
+                  <td>concelText</td>
+                  <td><span>String</span></td>
+                  <td>取消</td>
+                  <td>“取消”菜单文字</td>
+                </tr>
+                <tr>
+                  <td>concelTextStyle</td>
+                  <td><span>Object</span></td>
+                  <td>
+                    <p>{</p>
+                    <p style="text-indent: 1em;">color: '#f32836',</p>
+                    <p style="text-indent: 1em;">textAlign: 'center',</p>
+                    <p style="text-indent: 1em;">fontSize: '14px'</p>
+                    <p>}</p>
+                  </td>
+                  <td>“取消”菜单的文字样式 <br> 仅支持配置 color , textAlign , fontSize。 <br> 若有其他样式需求可自行定义样式。</td>
+                </tr>
+                <tr>
+                  <td>buttonTextStyle</td>
+                  <td><span>Object</span></td>
+                  <td>
+                    <p>{</p>
+                    <p style="text-indent: 1em;">color: '#333',</p>
+                    <p style="text-indent: 1em;">textAlign: 'left',</p>
+                    <p style="text-indent: 1em;">fontSize: '14px'</p>
+                    <p>}</p>
+                  </td>
+                  <td>菜单的文字样式 <br> 仅支持配置 color , textAlign , fontSize。 <br> 若有其他样式需求可自行定义样式。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="methodsBox">
+            <div class="document_title">方法（methods）</div>
+            <table>
+              <thead>
+                <tr>
+                  <th width="15%">名字</th>
+                  <th width="25%">参数</th>
+                  <th width="60%">说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>createActionSheet()</td>
+                  <td><span>options</span></td>
+                  <td>根据options参数创建Dom节点,若未调用此方法，将自动创建默认的Dom节点,预览见右侧中“默认参数”</td>
+                </tr>
+                <tr>
+                  <td>actionSheetShow()</td>
+                  <td><span>无</span></td>
+                  <td>控制actionSheet组件显示</td>
+                </tr>
+                <tr>
+                  <td>actionSheetHide()</td>
+                  <td><span>无</span></td>
+                  <td>控制actionSheet组件隐藏</td>
+                </tr>
+                <tr>
+                  <td>getActionSheetData()</td>
+                  <td><span>callback()</span></td>
+                  <td>监听点击菜单并返回所选值<br>例：Yuui.getActionSheetData(function(value) {
+                    console.log(value)
+                    })</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <iframe class="mobileView" src="./mobile-default.html" frameborder="0" height="100%" width="100%"></iframe>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+  $(function () {
+    $('.menuItem').click(function (e) {
+      $('.mobileView').attr('src', './' + e.currentTarget.dataset.href + '.html')
+    })
+  })
+
+</script>
