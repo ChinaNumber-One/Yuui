@@ -4,7 +4,7 @@
     contentDom: null,
     createActionSheet(opts) {
       let options = Object.assign({
-        domId:null,
+        domId: null,
         title: '',
         desc: '',
         position: 'bottom',
@@ -34,11 +34,11 @@
         }
       }, opts)
       this.options = options
-      if(options.domId){
+      if (options.domId) {
         this.contentDom = document.getElementById(options.domId)
-      } else{
+      } else {
         console.error('Yuui错误:domId为必传项!')
-        return 
+        return
       }
       let actionSheetHtml = '',
         title = '',
@@ -104,11 +104,12 @@
       return this
     },
     actionSheetShow(domId) {
-      if(!this.contentDom){
+      if (!this.contentDom) {
         console.error('Yuui错误：请先调用createActionSheet() 方法创建节点！')
         return
       }
-      if(domId){
+      console.log(this.contentDom)
+      if (domId) {
         this.contentDom = document.getElementById(domId)
       }
       this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.display = 'block'
@@ -117,11 +118,11 @@
         this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.opacity = 1
         this.contentDom.getElementsByClassName('yu-actionSheetList-middle')[0].style.top =
           (this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].offsetHeight -
-          this.contentDom.getElementsByClassName('yu-actionSheetList-middle')[0].offsetHeight) / 2 + 'px'
+            this.contentDom.getElementsByClassName('yu-actionSheetList-middle')[0].offsetHeight) / 2 + 'px'
       } else {
         let step = 0
         let animateTimer = setInterval(() => {
-          step ++
+          step++
           if (step > 50) {
             clearInterval(animateTimer)
             step = 0
@@ -135,11 +136,11 @@
       return this
     },
     actionSheetHide(domId) {
-      if(!this.contentDom){
+      if (!this.contentDom) {
         console.error('Yuui错误：请先调用createActionSheet 方法调用发生错误！')
         return
       }
-      if(domId){
+      if (domId) {
         this.contentDom = document.getElementById(domId)
       }
       if (this.options.position == 'middle') {
@@ -148,7 +149,7 @@
       } else {
         let step = 50
         let animateTimer = setInterval(() => {
-          step --
+          step--
           if (step < 0) {
             clearInterval(animateTimer)
             step = 50
@@ -165,16 +166,16 @@
       return this
     },
     getActionSheetData(fn) {
-      if(!this.contentDom){
+      if (!this.contentDom) {
         console.error('Yuui错误：请先调用createActionSheet 方法调用发生错误！')
         return
       }
-      
+
       let buttons = this.contentDom.getElementsByClassName('yu-actionSheetBtn')
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].onclick = (e) => {
           e.stopPropagation()
-          if(!fn){
+          if (!fn) {
             console.error('Yuui错误：getActionSheetData() 方法中回调函数为必填项！')
             return
           }

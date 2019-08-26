@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/yuui.css">
   <style>
+    /* 解决 手机背景图 四角圆角无法遮盖内部页面  start */
     html,
     body {
       cursor: pointer;
@@ -22,7 +23,7 @@
     .yu-actionSheetList {
       border-radius: 27px;
     }
-
+    /* end */
     .pageBox {
       height: 100%;
       width: 100%;
@@ -154,7 +155,7 @@
         显示上一次创建的actionSheet
       </div>
       <div class="watchItem" data-type="9">
-        显示已创建指定Dom下的actionSheet(此处指定于基本使用)
+        显示已创建指定Dom下的actionSheet<br>(此处指定于基本使用)
       </div>
     </div>
   </div>
@@ -194,7 +195,6 @@
         }]
       }
       let baseoptions = {
-        title: text,
       }
       options.domId = 'as' + type
       baseoptions.domId = 'as' + type
@@ -244,7 +244,11 @@
         Yuui.actionSheetShow()
       }
       if (type == 9) {
-        Yuui.actionSheetShow('as1')
+        if($('#as1').html()) {
+          Yuui.actionSheetShow('as1')
+        } else {
+          
+        }
       }
     }
   })

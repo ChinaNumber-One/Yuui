@@ -22,7 +22,7 @@ sup,sub{vertical-align:baseline}
 html {overflow-x: hidden;height: 100%;font-size: 50px;-webkit-tap-highlight-color: transparent;background: #fff}
 body {font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;color: #333;font-size: .28em;line-height: 1;-webkit-text-size-adjust: none;background: #fff}
 hr {height: .02rem;margin: .1rem 0;border: medium none;border-top: .02rem solid #cacaca;}
-a {color: #25a4bb;text-decoration: none;}
+a {color: #e7525c;text-decoration: none;}
 .hidden-single-line-text {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .clearfix:after{content:".";clear:both;display:block;height:0;overflow:hidden;visibility:hidden;}
 .clearfix{zoom:1;}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>代码示例</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/yuui.css">
+  <style>
+    /* 解决 手机背景图 四角圆角无法遮盖内部页面  start */
+    html,
+    body {
+      height: 100%;
+      background: none;
+      border-radius: 27px;
+      overflow: hidden;
+    }
+    .yu-actionSheetMask,
+    .yu-actionSheetList {
+      border-radius: 27px;
+    }
+    /* end */
+    .btn {
+      cursor: pointer;
+      width: 100px;
+      font-size: 20px;
+      text-align: center;
+      margin: 150px auto 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pageBox">
+    <div class="btn">显示</div>
+    <div id="as"></div>
+  </div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src='./js/yuui.js'></script>
+<script>
+  $(function () {
+    let op1 = {
+      domId: 'as',
+      buttons: [{ name: '3分', value: 3 }, { name: '2分', value: 2 }, { name: '1分', value: 1 }]
+    }
+    Yuui.createActionSheet(op1)
+      .actionSheetShow('as')
+      .getActionSheetData(value => {
+        console.log(value)
+      })
+    $('.btn').click(function(){
+      Yuui.actionSheetShow('as')
+    })
+  })
+</script>
