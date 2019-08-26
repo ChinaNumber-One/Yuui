@@ -108,7 +108,6 @@
         console.error('Yuui错误：请先调用createActionSheet() 方法创建节点！')
         return
       }
-      console.log(this.contentDom)
       if (domId) {
         this.contentDom = document.getElementById(domId)
       }
