@@ -14,6 +14,7 @@
     body {
       min-height: 100%;
     }
+
     /* @media (min-width: 768px) {
       .mobileView {
         display: none;
@@ -31,14 +32,17 @@
         display: block;
       }
     }
+
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
     }
+
     ::-webkit-scrollbar-thumb {
       border-radius: 5px;
       background: rgba(231, 82, 92, 0.8);
     }
+
     ::-webkit-scrollbar-track {
       border-radius: 0;
       background: rgba(0, 0, 0, 0.1);
@@ -287,34 +291,42 @@
       background: #fff;
       height: 40px;
     }
+
     /* html 标签 */
     .html-b {
-      color:#f2266f;
+      color: #f2266f;
     }
+
     /* html 属性 */
     .html-s {
       color: #97ca2e;
     }
+
     /* html 属性值 */
     .html-z {
       color: #e6db74;
     }
+
     /* js 自带 */
     .html-j {
       color: #66d9ef;
     }
+
     /* js 变量值 */
     .html-v {
       color: #ab7ffb;
     }
+
     /* 函数参数 */
     .html-c {
       color: #f6931f;
     }
+
     /* 注释 */
     .html-zs {
-      color:gray;
+      color: gray;
     }
+
     pre {
       padding: 14px 0;
     }
@@ -367,10 +379,10 @@
               <p style="text-indent: 5.5em;">&lt;script src='yuui.js'&gt;&lt;/script&gt;</p>
               <p style="text-indent: 3.5em;">
                 3、调用方法 Yuui.方法()
-                <span class="checkCode" style="color:#e7525c;cursor: pointer;;font-size: 14px;margin-left: 20px;">查看代码示例</span>
+                <span class="checkCode"
+                  style="color:#e7525c;cursor: pointer;;font-size: 14px;margin-left: 20px;">查看代码示例</span>
               </p>
             </div>
-
           </div>
         </div>
         <div class="anchor-point doc1-2">
@@ -574,7 +586,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
   $(function () {
-    $('.checkCode').click(function(){
+    $('.checkCode').click(function () {
       $('.menuItem').removeClass('menuItemActive')
       $('.menuItem').eq(1).addClass('menuItemActive').siblings()
       $('.doc1-2').show().siblings().hide()
@@ -588,7 +600,7 @@
       }
       $('.menuItem').removeClass('menuItemActive')
       $(this).addClass('menuItemActive').siblings()
-      $('.doc'+e.currentTarget.dataset.list).show().siblings().hide()
+      $('.doc' + e.currentTarget.dataset.list).show().siblings().hide()
     })
   })
 
