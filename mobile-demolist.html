@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Demo-list</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/yuui.css">
+  <style>
+    /* 解决 手机背景图 四角圆角无法遮盖内部页面  start */
+    html,
+    body {
+      cursor: pointer;
+      height: 100%;
+      background: none;
+      border-radius: 27px;
+      overflow: hidden;
+    }
+
+    .yu-actionSheetMask,
+    .yu-actionSheetList {
+      border-radius: 27px;
+    }
+
+    /* end */
+    .pageBox {
+      height: 100%;
+      width: 100%;
+    }
+
+    .title {
+      color: #fff;
+      font-size: 18px;
+      height: 66px;
+      width: 100%;
+      background: #e7525c url('./img/mobile-lh.png') no-repeat center 0px / 50% auto;
+      padding-top: 24px;
+      line-height: 42px;
+      text-align: center;
+      position: relative;
+      border-top-left-radius: 27px;
+      border-top-right-radius: 27px;
+    }
+
+    .backIcon {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 6px;
+      top: 35px;
+    }
+
+    .flex-warp {
+      display: flex;
+    }
+
+    .flex-cont {
+      flex: 1;
+    }
+
+    .time {
+      position: absolute;
+      top: 6px;
+      left: 24px;
+      font-size: 12px;
+      line-height: 12px;
+    }
+
+    .powerIcon {
+      position: absolute;
+      top: 2px;
+      right: 20px;
+      width: 22px;
+      height: 18px;
+      ;
+    }
+
+    .wifiIcon {
+      position: absolute;
+      top: 4px;
+      right: 50px;
+      width: 14px;
+      height: 14px;
+      ;
+    }
+
+    .extendIcon {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      right: 6px;
+      top: 35px;
+    }
+
+    .watchList {
+      padding: 12px;
+    }
+
+    .watchItem {
+      padding: 8px 0;
+      line-height: 24px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      display: block;
+      color: #333;
+    }
+
+    .watchItem:hover {
+      color: #e7525c;
+    }
+
+    .title-h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='pageBox'>
+    <div class="title">
+      <div class="time"></div>
+      <img src="./img/wifi.png" alt="" class='wifiIcon'>
+      <img src="./img/power.png" alt="" class='powerIcon'>
+      <img src="./img/back.png" alt="" class='backIcon'>
+      <div class=''>Demo-list</div>
+      <img src="./img/extend.png" alt="" class='extendIcon'>
+    </div>
+    <div class='watchList'>
+      <div class='title-h2'>弹框提示</div>
+      <a class="watchItem" href="./mobile-actionSheet.html">
+        ActiconSheet
+      </a>
+      <a class="watchItem" href="./mobile-toast.html">
+        Toast
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+	$(function () {
+		$('.time').html(getTime())
+		setInterval(() => {
+			$('.time').html(getTime())
+		}, 1000)
+		function getTime() {
+			let date = new Date()
+			let hour = '0' + date.getHours()
+			let minute = '0' + date.getMinutes()
+			let second = '0' + date.getSeconds()
+			return hour.substr(-2) + ':' + minute.substr(-2)
+		}
+		$('.backIcon').click(function(){
+			location.href = './mobile-default.html'
+		})
+	})
+
+
+</script>

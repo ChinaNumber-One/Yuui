@@ -182,7 +182,7 @@
       return hour.substr(-2) + ':' + minute.substr(-2)
     }
     $('.backIcon').click(function () {
-      window.history.go(-1)
+      location.href = './mobile-demolist.html'
     })
     $('.watchItem').click(function (e) {
       watchType(e.target.dataset.type, e.target.innerHTML)
