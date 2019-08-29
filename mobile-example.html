@@ -46,15 +46,16 @@
   $(function () {
     let op1 = {
       domId: 'as',
-      buttons: [{ name: '3分', value: 3 }, { name: '2分', value: 2 }, { name: '1分', value: 1 }],
+      buttons: [{ name: '上', value: "top" }, { name: '中', value: "middle" }, { name: '下', value: "bottom" }],
     }
     Yuui.createActionSheet(op1)
       .actionSheetShow('as')
       .getActionSheetData(value => {
-        let toastOpt = {
-          text: "name:" + value.name + ";value:" + value.value
+        let opts = {
+          text: "name:" + value.name + ";value:" + value.value,
+          position: value.value
         }
-        Yuui.createToast(toastOpt)
+        Yuui.createToast(opts)
       })
     $('.btn').click(function () {
       Yuui.actionSheetShow('as')

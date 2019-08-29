@@ -1,7 +1,7 @@
 (function () {
   let yuApi = {
-    options: {},
-    contentDom: null,
+    actionSheetOptions: {},
+    actionSheetContentDom: null,
     createActionSheet(opts) {
       let options = Object.assign({
         domId: null,
@@ -33,9 +33,9 @@
           fontSize: '14px'
         }
       }, opts)
-      this.options = options
+      this.actionSheetOptions = options
       if (options.domId) {
-        this.contentDom = document.getElementById(options.domId)
+        this.actionSheetContentDom = document.getElementById(options.domId)
       } else {
         console.error('Yuui错误:domId为必传项!')
         return
@@ -87,16 +87,16 @@
                           </div>`;
       let actionAsheetNode = document.createElement('div')
       actionAsheetNode.innerHTML = actionSheetHtml
-      this.contentDom.appendChild(actionAsheetNode)
+      this.actionSheetContentDom.appendChild(actionAsheetNode)
       if (options.closeOnclickMask) {
-        this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].onclick = (e) => {
+        this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].onclick = (e) => {
           e.stopPropagation()
           this.actionSheetHide()
         }
 
       }
       if (options.showCancel) {
-        this.contentDom.getElementsByClassName('yu-actionSheetCancelBtn')[0].onclick = (e) => {
+        this.actionSheetContentDom.getElementsByClassName('yu-actionSheetCancelBtn')[0].onclick = (e) => {
           e.stopPropagation()
           this.actionSheetHide()
         }
@@ -104,20 +104,20 @@
       return this
     },
     actionSheetShow(domId) {
-      if (!this.contentDom) {
+      if (!this.actionSheetContentDom) {
         console.error('Yuui错误：请先调用createActionSheet() 方法创建节点！')
         return
       }
       if (domId) {
-        this.contentDom = document.getElementById(domId)
+        this.actionSheetContentDom = document.getElementById(domId)
       }
-      this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.display = 'block'
-      this.contentDom.getElementsByClassName('yu-actionSheetList')[0].style.display = 'block'
-      if (this.options.position == 'middle') {
-        this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.opacity = 1
-        this.contentDom.getElementsByClassName('yu-actionSheetList-middle')[0].style.top =
-          (this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].offsetHeight -
-            this.contentDom.getElementsByClassName('yu-actionSheetList-middle')[0].offsetHeight) / 2 + 'px'
+      this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].style.display = 'block'
+      this.actionSheetContentDom.getElementsByClassName('yu-actionSheetList')[0].style.display = 'block'
+      if (this.actionSheetOptions.position == 'middle') {
+        this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].style.opacity = 1
+        this.actionSheetContentDom.getElementsByClassName('yu-actionSheetList-middle')[0].style.top =
+          (this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].offsetHeight -
+            this.actionSheetContentDom.getElementsByClassName('yu-actionSheetList-middle')[0].offsetHeight) / 2 + 'px'
       } else {
         let step = 0
         let animateTimer = setInterval(() => {
@@ -127,24 +127,24 @@
             step = 0
             return
           }
-          this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.opacity = step * 0.02
-          this.contentDom.getElementsByClassName('yu-actionSheetList')[0].style.maxHeight = step + '%'
+          this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].style.opacity = step * 0.02
+          this.actionSheetContentDom.getElementsByClassName('yu-actionSheetList')[0].style.maxHeight = step + '%'
         }, 1)
       }
 
       return this
     },
     actionSheetHide(domId) {
-      if (!this.contentDom) {
+      if (!this.actionSheetContentDom) {
         console.error('Yuui错误：请先调用createActionSheet 方法调用发生错误！')
         return
       }
       if (domId) {
-        this.contentDom = document.getElementById(domId)
+        this.actionSheetContentDom = document.getElementById(domId)
       }
-      if (this.options.position == 'middle') {
-        this.contentDom.getElementsByClassName('yu-actionSheetList')[0].style.display = 'none'
-        this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.display = 'none'
+      if (this.actionSheetOptions.position == 'middle') {
+        this.actionSheetContentDom.getElementsByClassName('yu-actionSheetList')[0].style.display = 'none'
+        this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].style.display = 'none'
       } else {
         let step = 50
         let animateTimer = setInterval(() => {
@@ -152,12 +152,12 @@
           if (step < 0) {
             clearInterval(animateTimer)
             step = 50
-            this.contentDom.getElementsByClassName('yu-actionSheetList')[0].style.display = 'none'
-            this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.display = 'none'
+            this.actionSheetContentDom.getElementsByClassName('yu-actionSheetList')[0].style.display = 'none'
+            this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].style.display = 'none'
             return
           }
-          this.contentDom.getElementsByClassName('yu-actionSheetList')[0].style.maxHeight = step + '%'
-          this.contentDom.getElementsByClassName('yu-actionSheetMask')[0].style.opacity = step * 0.02
+          this.actionSheetContentDom.getElementsByClassName('yu-actionSheetList')[0].style.maxHeight = step + '%'
+          this.actionSheetContentDom.getElementsByClassName('yu-actionSheetMask')[0].style.opacity = step * 0.02
         }, 1)
       }
 
@@ -165,12 +165,12 @@
       return this
     },
     getActionSheetData(fn) {
-      if (!this.contentDom) {
+      if (!this.actionSheetContentDom) {
         console.error('Yuui错误：请先调用createActionSheet 方法调用发生错误！')
         return
       }
 
-      let buttons = this.contentDom.getElementsByClassName('yu-actionSheetBtn')
+      let buttons = this.actionSheetContentDom.getElementsByClassName('yu-actionSheetBtn')
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].onclick = (e) => {
           e.stopPropagation()
@@ -178,7 +178,7 @@
             console.error('Yuui错误：getActionSheetData() 方法中回调函数为必填项！')
             return
           }
-          if (this.options.closeOnclickMenu) {
+          if (this.actionSheetOptions.closeOnclickMenu) {
             this.actionSheetHide()
           }
 
@@ -197,7 +197,7 @@
         clearInterval(toastHideTimer)
       }
       let options = {}
-      if(typeof opts === 'string'){
+      if (typeof opts === 'string') {
         options = {
           text: opts,
           type: 'text',
@@ -218,13 +218,12 @@
       if (options.type === 'loading') {
         options.duration = 0
       }
-      this.options = options
-      let toastHtml = `<div class='yu-toast-mask'>
+      let toastHtml = `
                         <div class="yu-toast yu-toast-${options.position}-${options.type}" style="min-width:8em;">
                             ${options.type !== 'text' ? `<div style="flex:1;display:flex;align-items: center;"><img src="./img/toast-${options.type}.png" class='yu-toastIcon'> </div>` : ''}
                           <div class="yu-toast-text" style="${options.type !== 'text' ? 'margin-bottom: 4px' : ''}">${options.text}</div>
                         </div>
-                      </div>
+                      
                       `
       let toastNode = document.createElement('div')
       toastNode.setAttribute('class', 'yu-toastMask')
@@ -295,6 +294,7 @@
           }, 20)
         }, options.duration)
       }
+      return this
     },
     toastHide() {
       if (document.getElementsByClassName('yu-toastMask')[0]) {
@@ -303,7 +303,7 @@
       } else {
         console.error('Yuui:Toast未创建或已隐藏')
       }
-
+      return this
     }
   }
   this.Yuui = yuApi

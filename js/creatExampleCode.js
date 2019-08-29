@@ -17,12 +17,29 @@ let html = `&lt;!<span class="html-b">DOCTYPE</span> <span class="html-s">html</
                   <span class="html-s">$</span>(<span class="html-j">function</span> () {
                       <span class="html-j">let</span> op1 <span class="html-b">=</span> {
                           domId: <span class="html-z">'as'</span>,
-                          buttons: [{name:<span class="html-z">'3分'</span>,value: <span class="html-v">3</span>},{name:<span class="html-z">'2分'</span>,value:  <span class="html-v">2</span>},{name:<span class="html-z">'1分'</span>,value: <span class="html-v">1</span>}]
+                          buttons: [
+                            {
+                              name:<span class="html-z">"上"</span>,
+                              value: <span class="html-z">"top"</span>
+                            },
+                            {
+                              name:<span class="html-z">"中"</span>,
+                              value:  <span class="html-z">"middle"</span>
+                            },
+                            {
+                              name:<span class="html-z">"下"</span>,
+                              value: <span class="html-z">"bottom"</span>
+                            }
+                          ]
                       }
                       Yuui.<span class="html-s">createActionSheet</span>(op1)
                           .<span class="html-s">actionSheetShow</span>(<span class="html-z">'as'</span>)
                           .<span class="html-s">getActionSheetData</span>( <span class="html-c ">value</span> <span class="html-s">=></span> {
-                              <span class="html-s">alert</span>(<span class="html-z">"name:"</span><span class="html-b">+</span>value.name<span class="html-b">+</span><span class="html-z">";value:"</span><span class="html-b">+</span>value.value)
+                            <span class="html-j">let</span> opts <span class="html-b">=</span> {
+                                text: <span class="html-z">"name:"</span><span class="html-b">+</span>value.name<span class="html-b">+</span><span class="html-z">";value:"</span><span class="html-b">+</span>value.value,
+                                position: value.value
+                              }
+                              Yuui.<span class="html-s">createToast</span>(opts)
                       })
                       <span class="html-s">$</span>(<span class="html-z">'.btn'</span>).<span class="html-s">click</span>(<span class="html-j">function</span>(){
                           Yuui.<span class="html-s">actionSheetShow</span>(<span class="html-z">'as'</span>)
