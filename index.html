@@ -19,17 +19,17 @@
       .mobileView {
         display: none;
       }
-    } */
+    }
 
     @media (min-width: 992px) {
       .mobileView {
         display: none;
       }
-    }
+    } */
 
-    @media (min-width: 1200px) {
+    @media (max-width: 1200px) {
       .mobileView {
-        display: block;
+        display: none;
       }
     }
 
@@ -222,9 +222,15 @@
     }
 
     .apiItemTitle {
-      line-height: 60px;
+      line-height: 46px;
       font-size: 24px;
       text-align: center;
+      position: sticky;
+      z-index: 1;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      top:0;
+      margin-bottom: 14px;
     }
 
     .red {
@@ -391,7 +397,7 @@
         <div class="anchor-point doc1-2">
           <div class='apiItemTitle'>代码示例</div>
           <pre style="background:#333;color: #fff;">
-    
+
           </pre>
         </div>
         <div class="anchor-point doc2-1">
@@ -527,12 +533,12 @@
                 </tr>
                 <tr>
                   <td>actionSheetShow</td>
-                  <td><span>domId - 选填</span></td>
+                  <td><span>domId - 非必填</span></td>
                   <td>控制actionSheet组件显示。<br>若传入指定domId，可控制指定actionSheet组件显示。<br>不传参数默认为最近一次创建的actionSheet组件</td>
                 </tr>
                 <tr>
                   <td>actionSheetHide</td>
-                  <td><span>domId - 选填</span></td>
+                  <td><span>domId - 非必填</span></td>
                   <td>控制actionSheet组件隐藏。<br>若传入指定domId，可控制指定actionSheet组件隐藏。<br>不传参数默认为最近一次创建的actionSheet组件</td>
                 </tr>
                 <tr>
@@ -541,6 +547,73 @@
                   <td>监听点击菜单并返回所选值<br>例：Yuui.getActionSheetData(function(value) {
                     console.log(value)
                     })</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="anchor-point doc2-2">
+          <div class='apiItemTitle'>Toast</div>
+          <div class="attributesBox">
+            <div class='document_title'>属性（attributes）</div>
+            <table>
+              <thead>
+                <tr>
+                  <th width="20%">名字</th>
+                  <th width="10%">类型</th>
+                  <th width="35%">默认值</th>
+                  <th width="35%">说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>type</td>
+                  <td><span>String</span></td>
+                  <td>"text"</td>
+                  <td>提示类型，可选值：text,success,faile,warning,loading。<br> 注：type为loading时不自动关闭，设置duration也无效，使用Yuui.toastHide()来关闭。</td>
+                </tr>
+                <tr>
+                  <td>text</td>
+                  <td><span>String</span></td>
+                  <td>"Hello Yuui !"</td>
+                  <td>提示文字</td>
+                </tr>
+                <tr>
+                  <td>position</td>
+                  <td><span>String</span></td>
+                  <td>"bottom"</td>
+                  <td>显示位置，可选值：top,middle,bottom。</td>
+                </tr>
+                <tr>
+                  <td>duration</td>
+                  <td><span>Number</span></td>
+                  <td>1000</td>
+                  <td>显示时间, 毫秒。设为 0 则不会自动关闭</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="methodsBox">
+            <div class="document_title">方法（methods）</div>
+            <table>
+              <thead>
+                <tr>
+                  <th width="15%">名字</th>
+                  <th width="25%">参数</th>
+                  <th width="60%">说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>createToast</td>
+                  <td><span>options - 非必填</span></td>
+                  <td>若options 为string 形式，默认以文字形式显示，显示文字为所传字符串，其他属性均为默认</td>
+                </tr>
+                <tr>
+                  <td>toastHide</td>
+                  <td><span>无</span></td>
+                  <td>若duration为0，或者type为loading时，可使用此方法关闭toast</td>
                 </tr>
               </tbody>
             </table>

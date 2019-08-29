@@ -23,6 +23,7 @@
     .yu-actionSheetList {
       border-radius: 27px;
     }
+
     /* end */
     .pageBox {
       height: 100%;
@@ -94,7 +95,6 @@
     }
 
     .watchList {
-      margin-top: 12px;
       padding: 12px;
     }
 
@@ -108,6 +108,12 @@
 
     .watchItem:hover {
       color: #e7525c;
+    }
+
+    .title-h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 14px;
     }
   </style>
 </head>
@@ -123,17 +129,36 @@
       <img src="./img/extend.png" alt="" class='extendIcon'>
     </div>
     <div class='watchList'>
-      <div class="watchItem" data-type="1">
-        基本使用 bottom
+      <div class='title-h2'>文字 type='text'</div>
+      <div class="watchItem" data-type="3">
+        基本使用 top
       </div>
       <div class="watchItem" data-type="2">
         基本使用 middle
       </div>
-      <div class="watchItem" data-type="3">
-        基本使用 top
+      <div class="watchItem" data-type="1">
+        基本使用 bottom
       </div>
       <div class="watchItem" data-type="4">
         一段特别长的文字
+      </div>
+      <div class="watchItem" data-type="9">
+        Yuui.createToast('文字类型简单使用 ')
+      </div>
+    </div>
+    <div class='watchList'>
+      <div class='title-h2'>带有icon</div>
+      <div class="watchItem" data-type="5">
+        type = "success"
+      </div>
+      <div class="watchItem" data-type="6">
+        type = "faile"
+      </div>
+      <div class="watchItem" data-type="7">
+        type = "warning"
+      </div>
+      <div class="watchItem" data-type="8">
+        type = "loading"
       </div>
     </div>
   </div>
@@ -163,14 +188,13 @@
       watchType(e.target.dataset.type, e.target.innerHTML)
     })
     function watchType(type, text) {
-      let options = {
-        text:'Hello Yuui !'
-      }
+      let options = {}
       if (type == 1) {
         Yuui.createToast(options)
       }
       if (type == 2) {
-        options.position = 'top'
+        options.position = 'middle'
+        options.text = '这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，'
         Yuui.createToast(options)
       }
       if (type == 3) {
@@ -181,7 +205,34 @@
         options.text = '这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字，这是一段特别长的文字。'
         Yuui.createToast(options)
       }
-      
+      if (type == 5) {
+        options.text = '成功!'
+        options.type = 'success'
+        Yuui.createToast(options)
+      }
+      if (type == 6) {
+        options.text = '失败!'
+        options.type = 'faile'
+        Yuui.createToast(options)
+      }
+      if (type == 7) {
+        options.text = '警告!'
+        options.type = 'warning'
+        options.position = 'top'
+        Yuui.createToast(options)
+      }
+      if (type == 8) {
+        options.text = '加载中……'
+        options.type = 'loading'
+        Yuui.createToast(options)
+        setTimeout(() => {
+          Yuui.toastHide()
+        }, 3000)
+      }
+      if (type == 9) {
+        Yuui.createToast('文字类型简单使用 ')
+      }
+
     }
   })
 </script>

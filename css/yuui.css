@@ -112,22 +112,35 @@
   top: 0;
   bottom: 0;
 }
-.yu-toast {
+.yu-toast-mask{
   position: fixed;
   left: 0;
   right: 0;
-  margin: auto;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.yu-toast {
+  position: absolute;
   background:hsla(0,0%,7%,.7);
   border-radius: 8px;
   min-height: 44px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
   color: #fff;
-  max-width: 80%;
-  max-height: 50%;
   overflow: auto;
   opacity: 0;
   line-height: 20px;
   padding: 12px;
+  max-width: 80%;
+  max-height: 40%;
+}
+.yu-toast .yu-toastIcon {
+  height: 50px;
+  width: 50px;
+  margin: 12px 24px;
 }
