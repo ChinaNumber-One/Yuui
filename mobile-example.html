@@ -15,10 +15,12 @@
       border-radius: 27px;
       overflow: hidden;
     }
+
     .yu-actionSheetMask,
     .yu-actionSheetList {
       border-radius: 27px;
     }
+
     /* end */
     .btn {
       cursor: pointer;
@@ -44,14 +46,18 @@
   $(function () {
     let op1 = {
       domId: 'as',
-      buttons: [{ name: '3分', value: 3 }, { name: '2分', value: 2 }, { name: '1分', value: 1 }]
+      buttons: [{ name: '3分', value: 3 }, { name: '2分', value: 2 }, { name: '1分', value: 1 }],
+      position: 'top'
     }
     Yuui.createActionSheet(op1)
       .actionSheetShow('as')
       .getActionSheetData(value => {
-        console.log(value)
+        let toastOpt = {
+          text: "name:" + value.name + ";value:" + value.value
+        }
+        Yuui.createToast(toastOpt)
       })
-    $('.btn').click(function(){
+    $('.btn').click(function () {
       Yuui.actionSheetShow('as')
     })
   })

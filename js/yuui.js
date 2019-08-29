@@ -104,6 +104,7 @@
       return this
     },
     actionSheetShow(domId) {
+      console.log(this.options)
       if (!this.contentDom) {
         console.error('Yuui错误：请先调用createActionSheet() 方法创建节点！')
         return
@@ -185,6 +186,92 @@
           return fn(JSON.parse(e.target.dataset.value))
         }
       }
+    },
+    createToast(opts) {
+      // create
+      let toastShowTimer = null;
+      let toastHideTimer = null;
+      if (toastShowTimer) {
+        clearInterval(toastShowTimer)
+      }
+      if (toastHideTimer) {
+        clearInterval(toastHideTimer)
+      }
+      let options = Object.assign({
+        text: 'Hello Yuui !',
+        type: 'text',
+        position: 'bottom',
+        duration: 1000
+      }, opts)
+      if (options.type !== 'text') {
+        options.position = 'middle'
+      }
+      this.options = options
+      let toastHtml = `
+                        <div class="yu-toast yu-toast-${options.position}">
+                          ${options.type !== 'text' ? `<img src="../img/toast-${options.type}" class='yu-toastIcon'>` : ''}
+                          <span>${options.text}</span>
+                        </div>
+                      `
+      let toastNode = document.createElement('div')
+      toastNode.setAttribute('class', 'yu-toastMask')
+      toastNode.innerHTML = toastHtml
+      document.body.appendChild(toastNode)
+      // show
+      let totalHeight =  30;
+      console.log(totalHeight)
+      let opacity = 0;
+      let step = 15;
+      let cheight = -document.getElementsByClassName('yu-toast')[0].offsetHeight;
+      toastShowTimer = setInterval(() => {
+        cheight += step
+        step = step/2 > 1?step/2:1
+        opacity += 1 / 8
+        
+        document.getElementsByClassName('yu-toast')[0].style.opacity = opacity
+        if (options.position === 'bottom') {
+          document.getElementsByClassName('yu-toast')[0].style.bottom = cheight + 'px'
+          if (cheight >= totalHeight) {
+            clearInterval(toastShowTimer)
+          }
+        } else if (options.position === 'top') {
+          document.getElementsByClassName('yu-toast')[0].style.top = cheight + 'px'
+          if (cheight >= totalHeight) {
+            clearInterval(toastShowTimer)
+          }
+        }
+        console.log(cheight)
+      }, 20)
+      // duration ！== 0 自动隐藏
+      // if (options.duration) {
+      //   setTimeout(() => {
+      //     clearInterval(toastShowTimer)
+      //     toastHideTimer = setInterval(() => {
+      //       step -= .2
+      //       console.log(step)
+      //       cheight -= 20 / step
+      //       opacity -= 1 / 6
+      //       document.getElementsByClassName('yu-toast')[0].style.opacity = opacity
+      //       if (options.position === 'bottom') {
+      //         document.getElementsByClassName('yu-toast')[0].style.bottom = cheight + 'px'
+      //         if (cheight <= -document.getElementsByClassName('yu-toast')[0].offsetHeight) {
+      //           clearInterval(toastHideTimer)
+      //           document.getElementsByClassName('yu-toastMask')[0].style.display = 'none'
+      //           document.body.removeChild(document.getElementsByClassName('yu-toastMask')[0])
+      //         }
+      //       } else if (options.position === 'top') {
+      //         document.getElementsByClassName('yu-toast')[0].style.top = cheight + 'px'
+      //         if (cheight <= -document.getElementsByClassName('yu-toast')[0].offsetHeight) {
+      //           clearInterval(toastHideTimer)
+      //           document.getElementsByClassName('yu-toastMask')[0].style.display = 'none'
+      //           document.body.removeChild(document.getElementsByClassName('yu-toastMask')[0])
+      //         }
+      //       }
+            
+
+      //     }, 10)
+      //   }, options.duration)
+      // }
     }
   }
   this.Yuui = yuApi
